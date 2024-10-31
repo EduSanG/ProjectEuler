@@ -3,7 +3,6 @@
 from functools import reduce
 
 
-l = []
 def isPrime(num):
     i=2
     while i*i <= num:
@@ -12,11 +11,11 @@ def isPrime(num):
         i+=1
     return True
 
-for n in range(2, 2000000):
-    print(n)
-    if isPrime(n):
-        l.append(n)
+def main():
+    l = []
+    for n in range(2, 2000000):
+        if isPrime(n):
+            l.append(n)
 
-answer = reduce(lambda a,b: a+b,l)
-
-print(answer)
+    answer = reduce(lambda a,b: a+b,l)
+    return answer

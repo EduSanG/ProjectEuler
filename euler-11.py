@@ -20,16 +20,44 @@ grid_string = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"""
 
-grid = [s.split(' ') for s in grid_string.split('\n')]
+grid = [[int(n) for n in s.split(' ')] for s in grid_string.split('\n')]
 
-for i, row in enumerate(grid):
-    for j, cell in enumerate(row):
-        horizontal = grid[i, j:j+4]
-        vertical = grid[i:i+4, j]
-        print(vertical)
+def get_horizontal(i,j):
+    return grid[i][j:j+4]
 
-def horizontal(i, j):
-    l = []
-    for j2 in range(j, j+4):
-        l.append(grid[i, j2])
-        
+def get_vertical(i,j):
+    try:
+        return [grid[i+n][j] for n in range(4)]
+    except:
+        return []
+
+def get_diagonal(i,j, flow=True):
+    if flow == False and j < 3: return []
+    mul = 1 if flow == True else -1
+    try:
+        diagonal = [grid[i+n][j+mul*n] for n in range(4)]
+    except:
+        diagonal = []
+    return diagonal
+
+def reduce_prod(arr):
+    res = 1
+    for num in arr:
+        res = res*num
+    return res
+
+def main(): 
+    max_num = 0
+    for i, row in enumerate(grid):
+        for j, cell in enumerate(row):
+            horizontal = reduce_prod(get_horizontal(i,j))
+            vertical = reduce_prod(get_vertical(i,j))
+            diagonal = reduce_prod(get_diagonal(i,j))
+            back_diag = reduce_prod(get_diagonal(i,j,False))
+            max_straight = horizontal if horizontal > vertical else vertical
+            max_diag = diagonal if diagonal > back_diag else back_diag
+            max_set = max_straight if max_straight > max_diag else max_diag
+            if max_set > max_num:
+                max_num = max_set
+
+    return max_num

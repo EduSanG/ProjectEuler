@@ -8,7 +8,6 @@ def findNum():
 
     while a >= 1:
         while b >= 1:
-            print(a,b,c)
             if a*a + b*b == c*c:
                 return a*b*c
             b-=1
@@ -19,4 +18,4 @@ def findNum():
         b = 1000-a-c
     return -1
 
-print(findNum())
+main = lambda: findNum()
