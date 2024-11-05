@@ -22,14 +22,17 @@ func main() {
 	start := time.Now() // Start time tracking
 
 	maxCollatz := 0
+	maxCollatzCount := 0
 	for i := 1; i < 1000000; i++ {
 		count := collatzCount(i)
-		if count > maxCollatz {
-			maxCollatz = count
+		if count > maxCollatzCount {
+			maxCollatz = i
+			maxCollatzCount = count
 		}
 	}
 
 	elapsed := time.Since(start) // Calculate elapsed time
-	fmt.Printf("Maximum Collatz count: %d\n", maxCollatz)
+	fmt.Printf("Maximum Collatz count: %d\n", maxCollatzCount)
+	fmt.Printf("Maximum Collatz: %d\n", maxCollatz)
 	fmt.Printf("Execution time: %s\n", elapsed)
 }

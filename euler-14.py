@@ -7,8 +7,11 @@ def collatz_count(n):
 
 def main():
     max_collatz = 0
+    max_collatz_count = 0
     buff = 0
     for i in range (1,1000000):
         buff = collatz_count(i)
-        max_collatz = buff if buff > max_collatz else max_collatz
+        if buff > max_collatz_count:
+            max_collatz_count = buff
+            max_collatz = i
     return max_collatz
