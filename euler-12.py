@@ -23,7 +23,7 @@ def main():
     while True:
         triangle += i
         triangle_divisors = get_divisors(triangle)
-        print(i, ' ',triangle, '\t', triangle_divisors)
+        # print(i, ' ',triangle, '\t', triangle_divisors)
         if triangle_divisors > 500:
             return triangle
         i+=1
