@@ -1,15 +1,22 @@
-grid_x = 20
-grid_y = 20
+from time import time
 
-def forward(pos_x, pos_y):
-    x = 0
-    y = 0
-    print(pos_x, ' ', pos_y)
-    if pos_x < grid_x:
-        x = forward(pos_x+1, pos_y)
-    if pos_y < grid_y:
-        y = forward(pos_x, pos_y+1)
-    return x+y
+import math
+
+def fact(n): return 1 if n <= 1 else n*fact(n-1)
+
+def bin_coeff(n, k):
+    n_fact = fact(n)
+    k_fact = fact(k)
+    diff_fact = fact(n-k)
+
+    return n_fact / (k_fact * diff_fact)
+
+def number_of_routes(n):
+    # The number of routes is the binomial coefficient C(2n, n)
+    return bin_coeff(2 * n, n)
 
 def main():
-    return forward(0,0)
+    for i  in range(1, 21):
+        start = time()
+        print(f'Size: {i}, Result: {number_of_routes(i)}, Time: {time() - start} seconds')
+    return 'Done'
