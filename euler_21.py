@@ -12,9 +12,10 @@ def d(divs):
         acc += i
     return acc
 
-def is_amicable(n):
-    dn = d(get_divisors(n))
-    return d(get_divisors(dn)) == n
+def is_amicable(a):
+    b = d(get_divisors(a))
+    db = d(get_divisors(b))
+    return db == a and a != b
 
 def main():
     acc = 0

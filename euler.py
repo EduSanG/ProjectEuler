@@ -7,7 +7,7 @@ if not len(sys.argv) > 1:
     exit()
 
 problem_number = sys.argv[1]
-file_name = f"euler-{problem_number}"
+file_name = f"euler_{problem_number}"
 
 try:
     problem = importlib.import_module(file_name)
